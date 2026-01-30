@@ -1,274 +1,171 @@
-// 12. Count number of keys in object : i/p:- { a: 1, b: 2, c: 3 }
-//                                      o/p:- 3
-// /*
-function findLength(list){
-    //using in-built object function
-    let len = Object.keys(list).length;
-
-    // let len = 0;
-    // for(let key in list){
-    //     len++;
-    // }
-    return len;
-}
-const list = { 
-    a: 1, 
-    b: 2, 
-    c: 3 ,
-    d:4
-};
-console.log(findLength(list));
-// */
-
-// 11. Sort object entries by values (ascending). i/p:- { a: 3, b: 1, c: 2 }
-//                                      o/p:- [["b",1], ["c",2], ["a",3]]
-/*
-function sortObjByValue(list){
-    const entries = Object.entries(list);
-    const res = entries.sort((a,b) => a[1]-b[1]);
-    
-    return res;
-}
-
-const list = { 
-    a: 3, 
-    b: 1, 
-    c: 2 
-};
-console.log(sortObjByValue(list));
+/*8. Write a function `findLargestElement` that takes an array of numbers and returns the largest element.
+  - Input: [3, 7, 2, 9, 1]
+  - Output: 9
 */
+function findLargest(numbers){
+    let max = numbers[0];
+    for(let i=1; i<numbers.length; i++){
+        if(numbers[i] > max){
+            max = numbers[i];
+        }
+    }
+    return max;
+}
+const numbers = [3, 7, 2, 9, 1];
+console.log(findLargest(numbers));
 
-// 10. Pick only given keys from object. i/p:- { name: "Rahul", age: 23, city: "Noida" }, ["name","city"]
-//                                      o/p:- { name: "Rahul", city: "Noida" }
+/*7.  Implement a function `calculateTotalSpentByCategory` which takes a list of transactions as parameter and return a list of objects where each object is unique category-wise and has total price spent as its value
+Transaction - an object like { itemName, category, price, timestamp }.
+  Output - [{ category1 - total_amount_spent_on_category1 }, { category2 - total_amount_spent_on_category2 }]*/
 /*
-function pickOnlyGivenKeys(user, keys){
+function calculateTotalSpentByCategory(transactions){
     let res = {};
-    for(let key in user){
-        if(keys.includes(key)){
-            res[key] = user[key];
+    for(let i=0; i<transactions.length; i++){
+        let category = transactions[i].category;
+        let price = transactions[i].price;  
+
+        if(res[category]){
+            res[category] += price;
+        }else{
+            res[category] = price;
         }
     }
     return res;
 }
-const user = {
-    name:"Rahul",
-    age : 23,
-    city : "Noida"
-};
-const keys = ["name","city"];
-console.log(pickOnlyGivenKeys(user, keys));
-*/
- 
- // 9. Unique values across all object arrays :- i/p: { x: [1,2,3], y: [2,3,4], z: [4,5] }
- //                                              o/p: [1,2,3,4,5]
- /*
-function findUnique(obj){
-
-    let res = [];
-    for(let key in obj){
-        for(let i=0; i<obj[key].length; i++){
-            if(!res.includes(obj[key][i])){
-                res.push(obj[key][i]);
-            }
-        }
-    }
-    return res;
-
-    /* using set
-    let set = new Set();
-    
-    for(let key in obj){
-        for(let i=0; i<obj[key].length; i++){
-            set.add(obj[key][i]);
-        }
-    }
-    return set;
-}
- const obj = { 
-    x: [1,2,3], 
-    y: [2,3,4], 
-    z: [4,5] 
-};
-console.log(findUnique(obj));
-*/
-
-// 8. Find student with highest average mark :- i/p: { A: [80, 90], B: [70, 75, 85] }
-//                                              o/p: A
-/*
-function highestAvg(students){
-    let res;
-    let highAvg = 0;
-    for(let student in students){
-        let sum = 0;
-        for(let i=0; i<students[student].length; i++){
-            sum += students[student][i];
-        }
-        let avg = sum/students[student].length;
-        if(avg > highAvg){
-            highAvg = avg;
-            res = student;
-        }
-    }
-    return res;
-}
-const students = { 
-    A: [80, 90], 
-    B: [70, 75, 85] 
-};
-console.log(highestAvg(students));
-*/
-
-// 7. Filter object by values > 50 :- i/p: { a: 20, b: 60, c: 40, d: 90 }
-//                                    o/p: { b: 60, d: 90 }
-/*
-function filterValue(obj){
-    let res = {};
-    
-    for(let key in obj){
-        if(obj[key] > 50){
-            res[key] = obj[key];
-        }
-    }
-    return res;
-}
-const obj = { 
-    a: 20,
-    b: 60, 
-    c: 40, 
-    d: 90 
-}
-console.log(filterValue(obj));
-*/
-
-// 6. Group people by city. i/p:- [{ name: "A", city: "Delhi" },{ name: "B", city: "Mumbai" },{ name: "C", city: "Delhi" }]
-//                          o/p:- { Delhi: ["A", "C"], Mumbai: ["B"] }
-/*
-function groupPeopleByCity(peoples){
-    let res = {};
-    for(let i=0; i<peoples.length; i++){
-        if(res[peoples[i].city]){
-            res[peoples[i].city].push(peoples[i].name);
-        }
-        else{
-            res[peoples[i].city] = [peoples[i].name];
-        }
-    }
-    return res;
-}
-const peoples = [
-  { name: "A", city: "Delhi" },
-  { name: "B", city: "Mumbai" },
-  { name: "C", city: "Delhi" }
+const transactions = [
+  { itemName: "Burger", category: "Food", price: 200, timestamp: 1 },
+  { itemName: "Pizza", category: "Food", price: 300, timestamp: 2 },
+  { itemName: "Bus Ticket", category: "Travel", price: 50, timestamp: 3 },
+  { itemName: "Movie", category: "Entertainment", price: 150, timestamp: 4 }
 ];
-console.log(groupPeopleByCity(peoples));
-*/
-
-// 5. Flatten object of arrays into one array. i/p:- { fruits: ["apple", "banana"], veggies: ["carrot", "pea"] }
-//                                             o/p:- ["apple", "banana", "carrot", "pea"]
-/*
-function makeArray(obj){
-    let res = [];
-    for(let key in obj){
-        for(let i=0; i<obj[key].length; i++){
-            res.push(obj[key][i]);
-        }
-    }
-
-    return res;
-}
-const obj = { 
-    fruits: ["apple", "banana"], 
-    veggies: ["carrot", "pea"]
-}
-console.log(makeArray(obj));
-*/
-
-// 4. Find the largest value key :- i/p- { a: 10, b: 50, c: 20 }
-//                                  o/p- b
-/*
-function findMaxValueKey(chars){
-    let maxKey;
-    let maxValue = 0;
-    for(let key in chars){
-        if(chars[key] > maxValue){
-            maxValue = chars[key];
-            maxKey = key;
-        }
-    }
-    return maxKey;
-}
-const chars = { a: 10, b: 50, c: 20 };
-console.log(findMaxValueKey(chars));
+const res = calculateTotalSpentByCategory(transactions);
+console.log(res);
 */
 
 
-// 3. Swap keys and values of object : - Input:    { a: "x", b: "y", c: "z" }
-//                                       output: { x: "a", y: "b", z: "c" }
+/*6. Write a function `isAnagram` which takes 2 parameters and returns true/false if those are anagrams or not.
+  What's Anagram -> A word, phrase, or name formed by rearranging the letters of another, such as spar, formed from rasp.*/
 /*
-function  swapKeyValues(letters){
+function isAnagram(str1, str2){
 
-    let res = {};
-    for(let key in letters){
-        res[letters[key]] = key;
-    }
-
-    return letters;
+    return sortString(str1) == sortString(str2);
+} 
+function sortString(str){
+    return str.toLowerCase().split('').sort().join('');
 }
-
-const letters = { a: "x", b: "y", c: "z" };
-console.log(swapKeyValues(letters));
+let str1 = "spar";
+let str2 = "rasp";
+console.log(isAnagram(str1, str2));
 */
 
 
-// 2. Count word occurrences in array : i/p :- ["apple", "banana", "apple", "orange", "banana", "apple"]
-//                                      o/p :- { apple: 3, banana: 2, orange: 1 }
-/*
-function countOccurences(fruits){
-    let res = {};
-    for(let i=0; i<fruits.length; i++){
-        if(res[fruits[i]]){
-            res[fruits[i]]++;
-        }
-        else{
-            res[fruits[i]] = 1;
-        }
+/*5. Write a function `reve` which takes a string as input and returns the reversed version of the string.
+  - Input: "Sumana"
+  - Output: "anamuS"
+function reverse(str){
+
+    return str.split('').reverse().join('');
+
+    // using logic
+    const arr = str.split('');
+    let i=0;
+    let j=arr.length-1;
+    while(i<=j){
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+        i++;
+        j--;
     }
-    return res;
-
-}
-const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
-console.log(countOccurences(fruits));
-*/
-
-// 1. Sum values in object arrays -> i/p :- { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] }
-                                   // o/p :-  {food: 60, travel: 20, bills: 100 }
-/*
-function totalExpense(expense){
-
-    // using reduce function
-    let res = {};
-    for(let key in expense){
-        res[key] = expense[key].reduce((acc, val) => acc + val, 0);
-    }
-    return res;
-
-    // using loops
- 
-    for(let key in expense){
-        let sum = 0;
-        for(let i=0; i<expense[key].length; i++){
-            sum += expense[key][i];
-        }
-        expense[key] = sum;
-    }
-    return expense;
+    str = arr.join('');
+    return str;
     
 }
+const str = "Sumana";
+console.log(reverse(str));
+*/
 
-let expense = { 
-    food: [10, 20, 30], 
-    travel: [5, 15], 
-    bills: [40, 60] 
+/*4. Write two functions to generate the Fibonacci sequence: Input: 10
+                                                            - Output (Iterative): [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+                                                            - Output (Recursive): 34
+
+function fiboReccursive(n){
+    if(n == 0){
+        return 0;
+    }
+    if(n == 1){
+        return 1;
+    }
+    return fiboReccursive(n-1) + fiboReccursive(n-2);  
 }
-console.log(totalExpense(expense));
+
+function fiboIterative(num){
+    let res = [];
+    res.push(0);
+    res.push(1);
+    for(let i=2; i<num; i++){
+        res[i] = res[i-1] + res[i-2];
+    }
+    return res;
+}
+let num = 10;
+console.log(fiboIterative(num));
+console.log(fiboReccursive(num-1));
+*/
+
+
+/*3. Write a function `countVowels` which takes a string as input and returns the count of vowels (both uppercase and lowercase) in the string.
+Input: "hello world" - Output: 3 
+function countVowels(str){
+    let count = 0;
+    let str2 = str.toLowerCase();
+    // console.log(str2);
+    for(let i=0; i<str2.length; i++){
+        if(str2[i] == 'a' || str2[i] == 'e' || str2[i] == 'i' || str2[i] == 'o' || str2[i] == 'u'){
+            count++;
+        }
+    }
+    return count;
+}
+const str = "hello world";
+console.log(countVowels(str));
+*/
+
+
+/*2. Write a function `countOccurrences` which takes an array as input and returns an object representing the frequency of each element in the array.
+// - Input: [10, 20, 10, 30, 20, 20]
+  - Output: { 10: 2, 20: 3, 30: 1 }
+function countOccurences(arr){
+    let res = {};
+    for(let i=0; i<arr.length; i++){
+        if(res[arr[i]]){
+            res[arr[i]]++;
+        }else{
+            res[arr[i]] = 1;
+        }
+    }
+    return res;
+}
+const arr = [10, 20, 10, 30, 20, 20];
+console.log(countOccurences(arr));
+*/
+
+/* 1. Write a function `countCharacters` which takes a string as input and returns an object representing the frequency of each character in the string.
+Example:
+  - Input: "hello"
+  - Output: { h: 1, e: 1, l: 2, o: 1 } 
+function countCharacters(str){
+    let res = {};
+    for(let i=0; i<str.length; i++){
+        if(res[str[i]]){
+            res[str[i]]++;
+        }
+        else{
+            res[str[i]] = 1;
+        }
+    }
+    return res;
+}
+let str = "hello";
+console.log(countCharacters(str));
 */
