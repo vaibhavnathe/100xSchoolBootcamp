@@ -1,0 +1,25 @@
+What is Promise :-
+    - Promise is an object that represents the eventual completion or failure or an
+    asynchronous operations - either success (resolved) or a failure (rejected)
+    - It's commonly used for things like:
+                                        - Fetching data from an API
+                                        - Reading files (fs.readFile, fs.writeFile)
+                                        - Timers (setTimeout)
+                                        - Database requests
+                                        - Networks calls
+
+Promise States : promise has 3 states -
+                                        1. Pending -> The operation is still running
+                                        2. Fullfilled(Resolved) -> The operation completed successfully
+                                        3. Rejected -> The operation failed
+                Once fullfilled or rejected is settled and cannot change state.
+
+
+callback based async functions => fs.readFile
+                                  fs.writeFile
+                                  setTimeout
+
+promises with .then() syntax => calling promisified with .then() & .catch()
+
+
+async awaiy syntaxt => calling promisified with async wait , without .then(), .catch()
