@@ -1,0 +1,14 @@
+/**** Solana CLI Commands for Token Program *************/
+
+> spl-token create-token                               :-  Create a new token 
+> spl-token create-account <TOKEN_MINT_ADDRESS>        :-  Create a new token account / ATA
+
+> spl-token mint <TOKEN_MINT_ADDRESS> <TOKEN_AMOUNT> <RECIPIENT_TOKEN_ACCOUNT_ADDRESS>       :-  Create a new token account / ATA
+
+> spl-token transfer  <TOKEN_MINT_ADDRESS>  <TOKEN_AMOUNT> <RECIPIENT_WALLET_ADDRESS or RECIPIENT_TOKEN_ACCOUNT_ADDRESS>:- Transfer tokens between accounts
+
+> spl-token supply <TOKEN_MINT_ADDRESS>                      :-  Get token supply
+> spl-token address                                    :- Get wallet address
+> spl-token accounts                                   :- List all token accounts by owner
+> spl-token balance <TOKEN_MINT_ADDRESS>               :- Get token account balance
+                                        
