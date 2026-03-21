@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Calculator App</title>
+
+        <script>
+            async function add(){
+                const a = document.getElementById("num1").value; 
+                const b = document.getElementById("num2").value; 
+
+                // document.getElementById("response").innerHTML =  parseInt(a) + parseInt(b);
+                
+                // using fetch API
+                // const res = await fetch(`http://localhost:3000/sum?a=${a}&b=${b}`);     // sending data in query params/url
+
+                // sending data through body from frontend
+                const res = await fetch(`http://localhost:3000/sum`, {
+                        method: "POST",
+                        headers:{
+                            "Content-Type" : "application/json"
+                        },
+                        body: JSON.stringify({
+                            a:a,
+                            b:b
+                        })
+                    }
+                );       
+                const data = await res.json();
+                console.log(data);
+                
+                document.getElementById("response").innerHTML = data.ans;
+            }   
+        </script>
+    </head>
+    <body>  
+        
+        <div>
+
+            <div>
+                <span>num1:</span>
+                <input id="num1" type="text" placeholder="Enter num1"/>
+            </div>
+            <div>
+                <span>num2:</span>
+                <input id="num2" type="text" placeholder="Enter num2"/>
+            </div>
+        </div>
+        <br>
+
+        <div>
+            <button onclick="add()">Add</button>
+            <button>Sub</button>
+            <button>Mul</button>
+            <button>Div</button>
+        </div>
+
+        <div id="response">
+            
+        </div>
+
+    </body>
+</html>
