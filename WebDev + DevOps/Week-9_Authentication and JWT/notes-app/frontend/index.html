@@ -1,0 +1,83 @@
+<html>
+    <head>
+        <title>Notes App</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+
+    <body>
+        
+        <div style="display: flex; justify-content: space-between; padding: 50px 100px;">
+
+            <div id="notes">
+                Loading ...
+            </div>
+
+            <div>
+                <input type="text" id="input">
+                <button onclick="addNote()">Create new note</button>
+            </div>
+
+        </div>
+
+        <script>
+
+            const addNote = async() => {
+                const value = document.getElementById("input").value;
+                document.getElementById("input").value = "";
+
+                const url = "http://localhost:3000/notes";
+                const res = await axios.post(url, 
+                    {   // body
+                        note : value
+                    },
+                    {   // headers
+                        headers : {
+                            token : localStorage.getItem("token")
+                        }
+                    }
+                );
+
+                // show the new todo/note in the frontend 
+                const newNote = document.createElement("div");
+                newNote.setAttribute("style", "border: 2px solid black; padding: 10px");
+                newNote.innerText = value;
+                document.getElementById("notes").appendChild(newNote);
+
+            }
+
+            const getNotes = async() => {
+
+                // getting data from backend :- fetch , axios 
+
+                const url = "http://localhost:3000/notes";
+
+                // 1. fetch :- function that comes with nodejs
+                // const response = await fetch(url);
+                // const data = await response.json();
+
+                // 2. axios :- external lib which builts on top up fetch
+                const response = await axios.get(url, {
+                    headers:{
+                        token : localStorage.getItem("token")
+                    }
+                });
+                // console.log(response);
+
+                const userNotes = response.data.notes;
+
+                document.getElementById("notes").innerHTML = "";
+                for(let i=0; i<userNotes.length; i++)
+                {
+                    const newNote = document.createElement("div");
+                    newNote.setAttribute("style", "border: 2px solid black; padding: 10px")
+                    newNote.innerHTML = userNotes[i].note;  // userNotes[i] :- {username : "harkirat", note: "Go to GYM"}
+                    document.getElementById("notes").appendChild(newNote);
+                }
+
+            }
+
+            getNotes();
+        </script>
+    </body>
+
+</html>

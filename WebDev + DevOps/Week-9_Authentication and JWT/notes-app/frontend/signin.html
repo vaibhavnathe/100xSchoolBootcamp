@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Signin</title>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+            const signin = async() => {
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                const url = "http://localhost:3000/signin";
+                const res = await axios.post(url, {
+                    username : username,
+                    password : password
+                });
+
+                // got token from backend, need to store it localstorage to access diff endpoints
+                const token = res.data.token;
+                localStorage.setItem("token", token);
+
+                window.location = "/"
+            }
+        </script>
+    </head>
+
+    <body>
+        
+        <div>
+            <span>Username: </span>
+            <input type="text" id="username" placeholder="username">
+        </div>
+        
+        <div>
+            <span>Password : </span>
+            <input type="password" id="password" placeholder="password">
+        </div>
+        <br>
+        <button onclick="signin()">Signin</button>
+
+    </body>
+</html>
