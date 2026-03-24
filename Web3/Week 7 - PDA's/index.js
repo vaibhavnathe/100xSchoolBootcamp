@@ -22,7 +22,7 @@ const [address2] = await PublicKey.findProgramAddressSync(
         programId.toBuffer(), 
         mintAddress.toBuffer()
     ],
-        associatedTokenProgramId
+    associatedTokenProgramId    // A PDA can be derived from any program , generally most of pda's are derived from ATP (Associated Token Program)
 );
 
 console.log(address2.toBase58());
