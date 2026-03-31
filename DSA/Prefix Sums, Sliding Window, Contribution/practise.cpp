@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// Count vowels from l to r
+
 int main()
 {
     string str;
