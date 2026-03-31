@@ -1,0 +1,14 @@
+Sets & Maps Class :
+
+i) Set :- Stores Unique elements, No duplicates
+        -  Remembers the insertion order
+        -  search / remove / insert/ find => O(1)
+        - syntax : ex. set<int> st;
+                        st.insert(10);
+                        st.count(10);   // check ele present or not
+
+ii) Maps :- Stores Key-Value pairs, unique keys but values can be duplicate
+        -  Remembers the insertion order
+        -  search / remove / insert/ find => O(1)
+        - syntax : ex.  map<int, int> mp;
+        
