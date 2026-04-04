@@ -1,0 +1,7 @@
+# Sliding window & Two Pointers
+
+// Patterns -> diff types of problems
+i)   FIXED SIZE = K
+ii)  LONGEST SUBARRAY WITH <CONDITION> :- steps=> 1. include ele of arr[l] , 2. untill window is invalid-update, 3. now valid window - update answer (maxLen)
+iii) COUNT SUBARRAYS WITH <CONDITION>  :- steps=> exactly same as above for LONGEST , just change the 3rd steps - increase/update count
+iv)  SHORTEST SUBARRAY WITH <CONDITION>
