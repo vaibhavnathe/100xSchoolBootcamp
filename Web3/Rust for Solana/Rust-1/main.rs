@@ -25,7 +25,7 @@ fn main(){
     for i in 1..10{
         ans += i; 
     }
-    println!(ans);
+    println!("{}", ans);
 
     // loop -> type of loop
     /*
@@ -43,7 +43,7 @@ fn main(){
 
     // functions
     let ans = do_sum(2,3);
-    println("{}", ans);
+    println!("{}", ans);
 
     // Data types :- rust has strict typed language
 
@@ -99,7 +99,7 @@ fn main(){
 }
 
 // functions
-pub fn do_sum(a: i32, b:i32){
+pub fn do_sum(a: i32, b:i32) -> i32{
     return a+b;
 }
 
