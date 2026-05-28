@@ -1,0 +1,17 @@
+
+Backtracking Notes :- https://www.notion.so/Backtracking-35ecf0b1c575800da66aea44e5c61109
+
+
+// note:- prefer writing recursive/backtracking code in this structure/format like f(idx/curr, arr, n, path)
+//      - It will help in DP
+
+// Backtracking :-  Backtracking is a problem sloving technique used to explore all possibile solutions systematically.
+//              - In Backtracking -> - We Make a choice
+//                                   - Explore all possibilities after making that choice
+//                                   - Undo the choice
+//                                   - Try another one
+// Core Idea : Choose -> Explore -> Undo   : Foundation of every backtracking problem
+// When used :- Print all solutions, Generate all possiblities, Find all valid configuarations, Explore every path
+
+// Diff between Recursion & Backtracking: Recursion - Recursion helps us go deeper into smaller subproblems
+//                                      Backtracking - Backtracking helpls return to previous states and try diff possibilities through recursion
