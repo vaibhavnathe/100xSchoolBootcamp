@@ -1,0 +1,11 @@
+
+Project : SWE/Terminal Bench    - 1. NextJs for Frontend
+                                - 2. Bun + Express for backend/cli
+                                - 3. Turbo-repo as the build framework
+                                - 4. NextAuth for Authentication
+                                - 5. Prisma + Postgress for DB
+
+    Benchmark -- SWE-Bench    - 1. Frondend -- Shows the leaderboard
+                              - 2. Backend -- Servers the leaderboard
+                              - 3. Writing evals -- 5(in TS) -- 8/10 difficulty
+                              - 4. Test environment (agent, model) => 83% -- 8/10 difficulty
